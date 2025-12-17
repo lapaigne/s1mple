@@ -62,7 +62,7 @@ func GenerateLabels(matrix [][]float64) (rowLabels, colLabels []string) {
 	}
 
 	rowLabels = make([]string, m+2)
-	for i := 0; i < m; i++ {
+	for i := range m {
 		rowLabels[i] = fmt.Sprintf("x%d", n+1+i)
 	}
 	rowLabels[m] = "f"
