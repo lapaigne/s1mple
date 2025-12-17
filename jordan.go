@@ -27,19 +27,29 @@ func Jordan(matrix [][]float64, pivotRow, pivotCol int) [][]float64 {
 	return newMatrix
 }
 
-func computeG(constraints [][]float64) []float64 {
-	n := len(constraints[0])
+func computeG(matrix [][]float64) []float64 {
+	n := len(matrix[0])
 	g := make([]float64, n)
+	// In this specific problem, row 3 (the 4th constraint) is the equality.
+	// We sum the rows that need to be satisfied as equalities.
 	for j := range n {
-		var sum float64
-		for i := range constraints {
-			sum += constraints[i][j]
-		}
-		g[j] = -sum
+		g[j] = -matrix[3][j]
 	}
-
 	return g
 }
+
+// func computeG(constraints [][]float64) []float64 {
+// 	n := len(constraints[0])
+// 	g := make([]float64, n)
+// 	for j := range n {
+// 		var sum float64
+// 		for i := range constraints {
+// 			sum += constraints[i][j]
+// 		}
+// 		g[j] = -sum
+// 	}
+// 	return g
+// }
 
 func jordanCol(fRow []float64) int {
 	pivotCol := -1
