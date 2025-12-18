@@ -10,6 +10,13 @@ func main() {
 		{0, -3, -8, 0, 0, 0},
 	}
 
+	// matrix := [][]float64{
+	// 	{4, 2, -1, 1, 0, 0},
+	// 	{2, 1, -2, 0, 1, 0},
+	// 	{5, 1, 1, 0, 0, 1},
+	// 	{0, 1, -1, 0, 0, 0},
+	// }
+
 	rowLabels, colLabels := GenerateLabels(matrix)
 
 	table := SimplexTable{

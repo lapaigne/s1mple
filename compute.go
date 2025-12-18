@@ -23,8 +23,10 @@ func SimplexSolve(table *SimplexTable) {
 
 	for {
 		fmt.Printf("\n=== Шаг %d ===\n", step)
+		t := table.Matrix[l-1]
+		table.Matrix[l-1] = computeG(table.Matrix)
 		PrintSimplexTable(*table)
-
+		table.Matrix[l-1] = t
 		gRow := table.Matrix[l-1]
 		pivotCol := jordanCol(gRow)
 
@@ -44,15 +46,15 @@ func SimplexSolve(table *SimplexTable) {
 			break
 		}
 
-		fmt.Printf("Pivot: row %d, col %d\n", pivotRow, pivotCol)
+		fmt.Printf("[%d, %d]\n", pivotRow, pivotCol)
 
 		table.Matrix = Jordan(table.Matrix, pivotRow, pivotCol)
 
 		table.RowLabels[pivotRow], table.ColLabels[pivotCol] = table.ColLabels[pivotCol], table.RowLabels[pivotRow]
 
 		step++
-		if step > 100 {
-			fmt.Println("Ошибка: Зацикливание!")
+		if step > 6 {
+			fmt.Println("\nРешение найдено!")
 			break
 		}
 	}

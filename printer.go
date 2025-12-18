@@ -17,7 +17,11 @@ func PrintSimplexTable(table SimplexTable) {
 	for i := range m {
 		fmt.Printf("%-6s", table.RowLabels[i])
 		for j := range n {
-			fmt.Printf("%8.2f", table.Matrix[i][j])
+			if j == n-1 {
+				fmt.Printf("%8.2f", -table.Matrix[i][j])
+			} else {
+				fmt.Printf("%8.2f", table.Matrix[i][j])
+			}
 		}
 		fmt.Println()
 	}
